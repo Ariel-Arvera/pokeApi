@@ -1,0 +1,12 @@
+E:\01_WorkSpace\poke-api\publish\PokeApi.exe
+E:\01_WorkSpace\poke-api\publish\appsettings.Development.json
+E:\01_WorkSpace\poke-api\publish\appsettings.json
+E:\01_WorkSpace\poke-api\publish\PokeApi.dll
+E:\01_WorkSpace\poke-api\publish\PokeApi.deps.json
+E:\01_WorkSpace\poke-api\publish\PokeApi.runtimeconfig.json
+E:\01_WorkSpace\poke-api\publish\PokeApi.pdb
+E:\01_WorkSpace\poke-api\publish\Microsoft.AspNetCore.OpenApi.dll
+E:\01_WorkSpace\poke-api\publish\Microsoft.OpenApi.dll
+E:\01_WorkSpace\poke-api\publish\Swashbuckle.AspNetCore.Swagger.dll
+E:\01_WorkSpace\poke-api\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\01_WorkSpace\poke-api\publish\Swashbuckle.AspNetCore.SwaggerUI.dll
