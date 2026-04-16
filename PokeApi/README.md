@@ -1,105 +1,153 @@
 # PokeAPI - API REST de Pokémon (.NET 8)
+Este proyecto fue realizado con el unico objetivo de estudiar la arquitectura y creracion de una API rest Basica y escalable, Se utilizaron documentaciones de StackOverflow y herramientas de IA solo para las consultas sobre errores, la sintaxis y creacion del proyecto corrio absolutamente por mi cuenta.
+-Ariel Vera.
 
 ![.NET](https://img.shields.io/badge/.NET-8.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-API REST construída con .NET 8 orientada a aprender conceptos de desarrollo backend. Ideal para desarrolladores junior que wanten entender APIs REST, Clean Architecture e inyección de dependencias.
+API REST construida con .NET 8 pensada como proyecto de aprendizaje backend. El objetivo es entender cómo estructurar una API real aplicando buenas prácticas como separación por capas, inyección de dependencias y diseño limpio, sin añadir complejidad innecesaria.
 
-## 🚀 Estructura del Proyecto
+---
+
+## Estructura del Proyecto
 
 ```
 PokeApi/
 ├── Domain/
-│   ├── Entities/        # Entidades del negocio (Pokemon, Move)
-│   └── Enums/          # Tipos de Pokémon (Fire, Water, etc.)
+│   ├── Entities/        # Modelos principales del dominio (Pokemon, Move)
+│   └── Enums/           # Tipos de Pokémon (Fire, Water, etc.)
 ├── Application/
-│   ├── DTOs/           # Objetos de transferencia de datos
-│   ├── Interfaces/     # Contratos para repositorios
-│   └── Services/       # Lógica de negocio
+│   ├── DTOs/            # Objetos que viajan hacia/desde la API
+│   ├── Interfaces/      # Contratos (repositorios, servicios)
+│   └── Services/        # Lógica de negocio (cálculo de daño, etc.)
 ├── Infrastructure/
-│   └── Repositories/  # Implementaciones en memoria
-└── Controllers/        # Endpoints HTTP
+│   └── Repositories/    # Implementaciones en memoria
+└── Controllers/         # Endpoints HTTP expuestos
 ```
 
-## 📋 Endpoints
+### Explicación rápida
+
+- **Domain**: Contiene las entidades y reglas principales. No depende de .NET ni de librerías externas.
+- **Application**: Coordina la lógica de negocio mediante servicios e interfaces.
+- **Infrastructure**: Implementa detalles técnicos (en este caso, almacenamiento en memoria).
+- **Controllers**: Punto de entrada de la API. Reciben peticiones y devuelven respuestas.
+
+---
+
+## Endpoints
 
 ### Pokémon
+
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
-| GET | `/api/pokemon` | Obtiene todos los Pokémon |
-| GET | `/api/pokemon/{id}` | Obtiene un Pokémon específico |
+| GET | `/api/pokemon` | Devuelve todos los Pokémon almacenados |
+| GET | `/api/pokemon/{id}` | Devuelve un Pokémon por id |
 | POST | `/api/pokemon` | Crea un nuevo Pokémon |
 | DELETE | `/api/pokemon/{id}` | Elimina un Pokémon |
 
+---
+
 ### Movimientos
+
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
-| GET | `/api/move` | Obtiene todos los movimientos |
-| POST | `/api/move` | Crea un nuevo movimiento |
+| GET | `/api/move` | Lista todos los movimientos |
+| POST | `/api/move` | Crea un movimiento |
+
+---
 
 ### Batalla
+
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
-| POST | `/api/battle/calculate-damage` | Calcula el daño entre Pokémon |
+| POST | `/api/battle/calculate-damage` | Calcula el daño entre dos Pokémon |
 
-## 🧠 Cómo funciona el cálculo de daño
+Este endpoint no persiste información. Solo ejecuta la lógica y devuelve el resultado.
 
-La fórmula implementada sigue el sistema clásico de Pokémon:
+---
+
+## Cálculo de daño
+
+La lógica implementa una fórmula simplificada basada en los juegos originales:
 
 ```
-damage = (((2 * nivel / 5 + 2) * poder * ataque / defensa) / 50 + 2) * efectividad * aleatorio
+damage = (((2 * nivel / 5 + 2) * poder * ataque / defensa) / 50 + 2) 
+         * efectividad 
+         * aleatorio
 ```
 
-**Componentes:**
+### Qué significa cada parte
+
 - **Nivel**: Nivel del Pokémon atacante
-- **Poder**: Power del movimiento usado
-- **Ataque/Defensa**: Estadísticas relevantes según el tipo de movimiento
-- **Efectividad**: Tabla de tipos (Fire vs Grass = 2x, Fire vs Water = 0.5x)
-- **Aleatorio**: Factor entre 0.85 y 1.0
+- **Poder**: Fuerza del movimiento
+- **Ataque / Defensa**: Estadísticas base de los Pokémon
+- **Efectividad**: Relación entre tipos (por ejemplo, fuego contra planta hace más daño)
+- **Aleatorio**: Factor entre 0.85 y 1.0 para introducir variación
 
-## 🏗️ Decisiones de Arquitectura
+---
 
-### ¿Por qué Clean Architecture?
-- **Separación de responsabilidades**: Cada capa tiene un propósito claro
-- **Testabilidad**: Los servicios pueden probarse independientemente
-- **Mantenibilidad**: Código más fácil de modificar y entender
+## Decisiones de arquitectura
 
-### ¿Por qué repositorios en memoria?
-- Sin configuración de base de datos
-- Ideal para aprendizaje y pruebas
-- Fácil de reemplazar por una BD real luego
+### Separación por capas
 
-## 📦 DTOs vs Entidades
+Se utiliza una estructura inspirada en Clean Architecture para evitar mezclar responsabilidades:
 
-- **Entidades**: Representan el modelo de dominio (内部)
-- **DTOs**: Objetos que se transfieren por la API (externo)
+- La lógica de negocio no depende de la API
+- Los controladores no contienen lógica compleja
+- Los datos se abstraen mediante interfaces
 
-Esto protege la lógica interna y permite cambios sin afectar a los clientes.
+---
 
-## 🛠️ Ejecutar el proyecto
+### Uso de repositorios en memoria
 
-```bash
+No se utiliza base de datos:
+
+- Se almacenan datos en listas en memoria
+- Permite ejecutar el proyecto sin configuración adicional
+- Es suficiente para demostrar funcionamiento en una entrevista
+
+---
+
+## DTOs vs Entidades
+
+- **Entidades**: Modelo interno del sistema
+- **DTOs**: Datos que viajan por la API
+
+Separarlos evita exponer la lógica interna.
+
+---
+
+## Ejecutar el proyecto
+
+```
 cd PokeApi
 dotnet run
 ```
 
-Swagger disponible en: `http://localhost:5000/`
+Swagger:
 
-## 📚 Conceptos aprendidos
+```
+http://localhost:5000/swagger
+```
 
-1. **Controllers** - Manejo de solicitudes HTTP
-2. **Servicios** - Lógica de negocio desacoplada
-3. **Inyección de dependencias** - (`AddScoped`, `AddSingleton`)
-4. **Patrón Repository** - Abstracción de acceso a datos
-5. **DTOs** - Transferencia de datos entre capas
-6. **Swagger/OpenAPI** - Documentación automática
-7. **Validación de modelos** - `[ApiController]`, `[Required]`
+---
 
-## 🔄 Mejoras futuras (para aprender más)
+## Conceptos aplicados
 
-- Agregar base de datos (SQL Server, PostgreSQL, MongoDB)
-- Agregar autenticación con JWT
-- Implementar validación con FluentValidation
-- Agregar Unit Tests con xUnit
-- Implementar Logging
-- Agregar Health Checks
+1. Controllers
+2. Servicios
+3. Inyección de dependencias
+4. Repository Pattern
+5. DTOs
+6. Swagger
+7. Validación básica
+
+---
+
+## Posibles mejoras
+
+- Base de datos
+- JWT
+- Validaciones avanzadas
+- Tests
+- Logging
