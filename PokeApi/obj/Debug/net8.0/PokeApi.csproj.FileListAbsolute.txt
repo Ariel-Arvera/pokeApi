@@ -34,3 +34,15 @@ E:\01_WorkSpace\poke-api\PokeApi\obj\Debug\net8.0\refint\PokeApi.dll
 E:\01_WorkSpace\poke-api\PokeApi\obj\Debug\net8.0\PokeApi.pdb
 E:\01_WorkSpace\poke-api\PokeApi\obj\Debug\net8.0\PokeApi.genruntimeconfig.cache
 E:\01_WorkSpace\poke-api\PokeApi\obj\Debug\net8.0\ref\PokeApi.dll
+E:\01_WorkSpace\poke-api\PokeApi\bin\Debug\net8.0\FluentValidation.dll
+E:\01_WorkSpace\poke-api\PokeApi\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+E:\01_WorkSpace\poke-api\PokeApi\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+E:\01_WorkSpace\poke-api\PokeApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\01_WorkSpace\poke-api\PokeApi\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+E:\01_WorkSpace\poke-api\PokeApi\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\01_WorkSpace\poke-api\PokeApi\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+E:\01_WorkSpace\poke-api\PokeApi\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+E:\01_WorkSpace\poke-api\PokeApi\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\01_WorkSpace\poke-api\PokeApi\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+E:\01_WorkSpace\poke-api\PokeApi\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+E:\01_WorkSpace\poke-api\PokeApi\obj\Debug\net8.0\PokeApi.sourcelink.json

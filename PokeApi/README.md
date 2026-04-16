@@ -1,5 +1,5 @@
 # PokeAPI - API REST de Pokémon (.NET 8)
-Este proyecto fue realizado con el unico objetivo de estudiar la arquitectura y creracion de una API rest Basica y escalable, Se utilizaron documentaciones de StackOverflow y herramientas de IA solo para las consultas sobre errores, la sintaxis y creacion del proyecto corrio absolutamente por mi cuenta.
+Este proyecto fue realizado con el unico objetivo de estudiar la arquitectura y creracion de una API rest Basica y escalable, Se utilizaron documentaciones de StackOverflow y herramientas de IA solo para las consultas sobre errores y documentacion, la sintaxis y creacion del proyecto corrio absolutamente por mi cuenta.
 -Ariel Vera.
 
 ![.NET](https://img.shields.io/badge/.NET-8.0-blue)

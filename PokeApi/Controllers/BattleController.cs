@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokeApi.Application.DTOs;
 using PokeApi.Application.Services;
@@ -7,6 +8,7 @@ namespace PokeApi.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
+[Authorize]
 public class BattleController : ControllerBase
 {
     private readonly BattleService _battleService;
@@ -19,8 +21,6 @@ public class BattleController : ControllerBase
     /// <summary>
     /// Calcula el daño que un Pokémon inflige a otro usando un movimiento específico.
     /// </summary>
-    /// <param name="request">Datos del combate: atacante, defensor y movimiento</param>
-    /// <returns>Daño calculado con efectividad</returns>
     [HttpPost("calculate-damage")]
     [ProducesResponseType(typeof(DamageResponseDto), 200)]
     [ProducesResponseType(400)]
